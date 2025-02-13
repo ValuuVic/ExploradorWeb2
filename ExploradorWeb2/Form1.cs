@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Web.WebView2.Core;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ExploradorWeb2
 {
@@ -74,7 +76,17 @@ namespace ExploradorWeb2
             {
                 webView.CoreWebView2.Navigate(addressBar.Text);
             }
-            
+            string archivo =  @"../../historial.text";
+            FileStream stream = new FileStream(archivo, FileMode.Append, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(stream);
+            writer.WriteLine(addressBar.Text);
+            writer.Close();
+
+        }
+
+        private void webView_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -31,6 +31,7 @@
             this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.addressBar = new System.Windows.Forms.TextBox();
             this.goButton = new System.Windows.Forms.Button();
+            this.comboBoxHistorial = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,23 +40,24 @@
             this.webView.AllowExternalDrop = true;
             this.webView.CreationProperties = null;
             this.webView.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView.Location = new System.Drawing.Point(-2, 38);
+            this.webView.Location = new System.Drawing.Point(-2, 61);
             this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(418, 258);
-            this.webView.Source = new System.Uri("https://www.microsoft.com", System.UriKind.Absolute);
+            this.webView.Size = new System.Drawing.Size(548, 468);
+            this.webView.Source = new System.Uri("https://www.google.com", System.UriKind.Absolute);
             this.webView.TabIndex = 0;
             this.webView.ZoomFactor = 1D;
+            this.webView.Click += new System.EventHandler(this.webView_Click);
             // 
             // addressBar
             // 
-            this.addressBar.Location = new System.Drawing.Point(12, 12);
+            this.addressBar.Location = new System.Drawing.Point(12, 6);
             this.addressBar.Name = "addressBar";
-            this.addressBar.Size = new System.Drawing.Size(253, 20);
+            this.addressBar.Size = new System.Drawing.Size(424, 20);
             this.addressBar.TabIndex = 1;
             // 
             // goButton
             // 
-            this.goButton.Location = new System.Drawing.Point(302, 8);
+            this.goButton.Location = new System.Drawing.Point(442, 2);
             this.goButton.Name = "goButton";
             this.goButton.Size = new System.Drawing.Size(88, 26);
             this.goButton.TabIndex = 2;
@@ -63,11 +65,20 @@
             this.goButton.UseVisualStyleBackColor = true;
             this.goButton.Click += new System.EventHandler(this.goButton_Click);
             // 
+            // comboBoxHistorial
+            // 
+            this.comboBoxHistorial.FormattingEnabled = true;
+            this.comboBoxHistorial.Location = new System.Drawing.Point(12, 34);
+            this.comboBoxHistorial.Name = "comboBoxHistorial";
+            this.comboBoxHistorial.Size = new System.Drawing.Size(518, 21);
+            this.comboBoxHistorial.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 294);
+            this.ClientSize = new System.Drawing.Size(542, 523);
+            this.Controls.Add(this.comboBoxHistorial);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.addressBar);
             this.Controls.Add(this.webView);
@@ -85,6 +96,7 @@
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
         private System.Windows.Forms.TextBox addressBar;
         private System.Windows.Forms.Button goButton;
+        private System.Windows.Forms.ComboBox comboBoxHistorial;
     }
 }
 
