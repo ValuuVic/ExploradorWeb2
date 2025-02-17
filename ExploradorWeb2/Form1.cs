@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -59,7 +60,22 @@ namespace ExploradorWeb2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            string archivo = @"../../historial.text";
+            try
+            {
+                List<string> historial = File.Exists(archivo) ? File.ReadAllLines(archivo).ToList() : new List<string>();
+                if (historial.Count > 10)
+                {
+                    historial = historial.Skip(historial.Count - 10).ToList();
+                }
+                File.WriteAllLines(archivo, historial);
+                historialComboBox.Items.Clear();
+                historialComboBox.Items.AddRange(historial.ToArray());
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show("Error al guardar o leer el historial: " + ex.Message);
+            }
         }
 
         private void goButton_Click(object sender, EventArgs e)
