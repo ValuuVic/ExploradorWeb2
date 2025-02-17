@@ -64,29 +64,60 @@ namespace ExploradorWeb2
 
         private void goButton_Click(object sender, EventArgs e)
         {
-            if (addressBar.Text.EndsWith(".com"))
+            string url = addressBar.Text.Trim();
+            if (string.IsNullOrWhiteSpace(url))
             {
-                addressBar.Text = "https://"+addressBar.Text ;
+                addressBar.Text = "https://www.google.com";
+                url = addressBar.Text;
             }
-            if (!addressBar.Text.EndsWith(".com"))
+            else if (!url.StartsWith("https://"))
             {
-                addressBar.Text = "https://www.google.com/search?q=" + addressBar.Text ;
+                if (url.EndsWith(".com"))
+                {
+                    addressBar.Text = "https://" + url;
+                }
+                else
+                {
+                    addressBar.Text = "https://www.google.com/search?q=" + url;
+                }
+                url = addressBar.Text;
             }
-            if (webView != null && webView.CoreWebView2 != null)
+            if (webView?.CoreWebView2 != null)
             {
-                webView.CoreWebView2.Navigate(addressBar.Text);
+                webView.CoreWebView2.Navigate(url);
             }
-            string archivo =  @"../../historial.text";
-            FileStream stream = new FileStream(archivo, FileMode.Append, FileAccess.Write);
-            StreamWriter writer = new StreamWriter(stream);
-            writer.WriteLine(addressBar.Text);
-            writer.Close();
+
+            string archivo = @"../../historial.text";
+            try
+            {
+                List<string> historial = File.Exists(archivo) ? File.ReadAllLines(archivo).ToList() : new List<string>();
+                historial.Add(url);
+                if (historial.Count > 10)
+                {
+                    historial = historial.Skip(historial.Count - 10).ToList();
+                }
+                File.WriteAllLines(archivo, historial);
+                historialComboBox.Items.Clear();
+                historialComboBox.Items.AddRange(historial.ToArray());
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show("Error al guardar o leer el historial: " + ex.Message);
+            }
 
         }
 
         private void webView_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void historialComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (historialComboBox.SelectedItem != null)
+            {
+                addressBar.Text = historialComboBox.SelectedItem.ToString();
+            }
         }
     }
 }

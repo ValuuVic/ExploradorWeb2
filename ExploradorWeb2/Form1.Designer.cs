@@ -31,7 +31,7 @@
             this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.addressBar = new System.Windows.Forms.TextBox();
             this.goButton = new System.Windows.Forms.Button();
-            this.comboBoxHistorial = new System.Windows.Forms.ComboBox();
+            this.historialComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,20 +65,21 @@
             this.goButton.UseVisualStyleBackColor = true;
             this.goButton.Click += new System.EventHandler(this.goButton_Click);
             // 
-            // comboBoxHistorial
+            // historialComboBox
             // 
-            this.comboBoxHistorial.FormattingEnabled = true;
-            this.comboBoxHistorial.Location = new System.Drawing.Point(12, 34);
-            this.comboBoxHistorial.Name = "comboBoxHistorial";
-            this.comboBoxHistorial.Size = new System.Drawing.Size(518, 21);
-            this.comboBoxHistorial.TabIndex = 3;
+            this.historialComboBox.FormattingEnabled = true;
+            this.historialComboBox.Location = new System.Drawing.Point(12, 34);
+            this.historialComboBox.Name = "historialComboBox";
+            this.historialComboBox.Size = new System.Drawing.Size(518, 21);
+            this.historialComboBox.TabIndex = 3;
+            this.historialComboBox.SelectedIndexChanged += new System.EventHandler(this.historialComboBox_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(542, 523);
-            this.Controls.Add(this.comboBoxHistorial);
+            this.Controls.Add(this.historialComboBox);
             this.Controls.Add(this.goButton);
             this.Controls.Add(this.addressBar);
             this.Controls.Add(this.webView);
@@ -96,7 +97,7 @@
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
         private System.Windows.Forms.TextBox addressBar;
         private System.Windows.Forms.Button goButton;
-        private System.Windows.Forms.ComboBox comboBoxHistorial;
+        private System.Windows.Forms.ComboBox historialComboBox;
     }
 }
 
